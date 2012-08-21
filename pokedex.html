@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>pokedex 3d pro ar generator</title>
+		<meta charset="utf-8">
+		<script src="poke3dproargen.js"></script>
+		<script>
+		window.onload = function() {
+			btnCreate_onClick();
+		};
+		
+		function btnCreate_onClick() {
+			var txtId = document.getElementById('txtId'),
+				chkName = document.getElementById('chkName');
+			poke3dproargen("container",txtId.value, chkName.checked);
+		}
+
+		</script>
+	</head>
+	<body>
+		Draw name: <input id="chkName" type="checkbox" checked="true" /><br />
+		<input id="txtId" type="text" value="123" /><button id="btnCreate" onclick="btnCreate_onClick()">Create</button>
+		<br /><br />
+		<canvas style="border: solid 1px black" id="container" width="200" height="200"></div>
+	</body>
+</html>
