@@ -103,7 +103,7 @@ function poke3dproargen(canvasId, number, drawName) {
 		if (pokedex[id])
 			context.fillText(pokedex[id], canvas.width * 0.5, recHeight * 7, recWidth * 6);
 		else {
-			if (id < 0x3e9)
+			if (id < 0x3e8)
 				context.fillText("Copy", canvas.width * 0.5, recHeight * 7, recWidth * 6);
 			else
 				context.fillText("Random", canvas.width * 0.5, recHeight * 7, recWidth * 6);
