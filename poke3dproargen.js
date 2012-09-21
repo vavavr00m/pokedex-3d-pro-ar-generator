@@ -49,10 +49,6 @@ var bitPos = [
 
 var parityPos = [ [2,2], [2,3], [2,4] ];
 
-/*
-function poke3dproargen(canvasId, number, drawName) {
-
-}*/
 function poke3dproargen(canvasId, number, drawName) {
 
 	//get canvas and fill it black
@@ -94,21 +90,32 @@ function poke3dproargen(canvasId, number, drawName) {
 		if (parity[i])
 			context.fillRect(parityPos[i][0] * recWidth, parityPos[i][1] * recHeight, recWidth, recHeight);
 
+	//find name
+	var name = null;
+	if (pokedex[id] || (id > 0x3DB && id < 0x400)) {
+		name = pokedex[id] ? pokedex[id] : id < 0x3e8 ? "Copy" : "Random";
+	}
+
 	//draw name
-	if (drawName && (pokedex[id] || (id > 0x3DB && id < 0x400))) {
+	if (drawName && name != null) {
 		context.textBaseline = 'top'; 
 		context.textAlign = 'center';
 		context.font = Math.floor(recHeight * 0.8) + 'px Arial';
 		context.fillStyle = 'black';
-		if (pokedex[id])
-			context.fillText(pokedex[id], canvas.width * 0.5, recHeight * 7, recWidth * 6);
-		else {
-			if (id < 0x3e8)
-				context.fillText("Copy", canvas.width * 0.5, recHeight * 7, recWidth * 6);
-			else
-				context.fillText("Random", canvas.width * 0.5, recHeight * 7, recWidth * 6);
-		}
+		context.fillText(name, canvas.width * 0.5, recHeight * 7, recWidth * 6);
 	}
+
+	//put pokemon's info
+	var txtName = document.getElementById('txtName');
+	txtName.innerHTML = name || "N/A";
+
+	var img = document.getElementById('imgPokemon');
+	var numtxt = "" + number;
+	if (numtxt.length == 1)
+		numtxt = "00" + numtxt;
+	else if (numtxt.length == 2)
+		numtxt = "0" + numtxt;
+	img.src = 'pokedb/' + numtxt +'.png'
 }
 
 var pokedex = [
