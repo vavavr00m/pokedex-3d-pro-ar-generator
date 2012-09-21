@@ -16,11 +16,70 @@
 		}
 
 		</script>
+		<style>
+		body {
+			font-family: Tahoma,Arial,Sans-serif,sans
+		}
+		.pokedex_body {
+			background-color: #c00;
+			width: 400px;
+			height: 500px;
+			-moz-border-radius: 20px;
+    		-webkit-border-radius: 20px;
+    		-khtml-border-radius: 20px;
+    		border-radius: 20px;
+		}
+		.pokedex_name {
+			position: absolute;
+			width: 400px; height: 16px;
+			top: 70px;
+			text-align: center
+		}
+		.pokedex_image {
+			position: absolute;
+			background-color: white;
+			width: 96px; height: 96px;
+			left: 160px; top: 96px;
+			-moz-border-radius: 5px;
+    		-webkit-border-radius: 5px;
+    		-khtml-border-radius: 5px;
+    		border-radius: 5px;			
+		}
+		.pokedex_qr {
+			position: absolute;
+			left: 104px; top: 220px;
+		}
+		.pokedex_search {
+			position: absolute;
+			left: 100px; top: 440px;
+		}
+		</style>
 	</head>
 	<body>
-		Draw name: <input id="chkName" type="checkbox" checked="true" /><br />
-		<input id="txtId" type="text" value="123" /><button id="btnCreate" onclick="btnCreate_onClick()">Create</button>
-		<br /><br />
-		<canvas style="border: solid 1px black" id="container" width="200" height="200"></div>
+		<div class="pokedex_body">
+			<h2 style="text-align:center">Pokedex 3D Pro by elisherer</h2>
+			<div class="pokedex_search">
+				Draw name: <input id="chkName" type="checkbox" checked="true" /><br />
+				<input id="txtId" type="text" value="123" /><button id="btnCreate" onclick="btnCreate_onClick()">Create</button><br />
+				<select id="selectPokedex" onchange="document.getElementById('txtId').value=this.value"></select>
+				<script>
+					var elSel = document.getElementById('selectPokedex');
+					pokedex.forEach(function(name,index) {
+						var elOptNew = document.createElement('option');
+						elOptNew.text = name;
+  						elOptNew.value = index + 1;
+  						try {
+    						elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+ 						}
+						catch(ex) {
+							elSel.add(elOptNew); // IE only
+						}
+					});
+				</script>
+			</div>
+			<div id="txtName" class="pokedex_name"></div>
+			<img id="imgPokemon" class="pokedex_image" alt />
+			<canvas class="pokedex_qr" style="border: solid 1px black" id="container" width="200" height="200"></div>
+		</div>
 	</body>
 </html>
